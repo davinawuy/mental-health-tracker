@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rox+7$i9!m4h==7-z4&$x%l#watjx-*yryf%j)-_72tyjq($*k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "alano-davin-mentalhealthtracker.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "alano-davin-mentalhealthtrackerr.pbp.cs.ui.ac.id"]
 
 
 # Application definition
