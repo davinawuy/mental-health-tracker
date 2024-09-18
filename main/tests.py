@@ -26,7 +26,7 @@ class MainTest(TestCase):
         self.assertTrue(mood.is_mood_strong)
 
     #testing the main page
-    def test_main_template_uses_correct_page_title(self):
-        response = Client().get("/")
-        html_response = response.content.decode("utf8")
-        self.assertIn("PBD Mental Health Tracker", html_response)
+    def test_main_template_uses_correct_page_title(self): # new test
+        response = Client().get("/")                    # create an instance of the client and send a GET request to the main page
+        html_response = response.content.decode("utf8") # decode the response content to a string
+        self.assertIn("PBD Mental Health Tracker", html_response) # check if the string "PBD Mental Health Tracker" is in the response
