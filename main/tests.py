@@ -29,16 +29,16 @@ class MainTest(TestCase):
 
     #testing the main page
 
-    def test_main_template_uses_correct_page_title(self):
-        self.user = User.objects.create_user(username='Admin', password='Y62hhBkYD_@ACTH')
+    def test_main_template_uses_correct_page_title(self): # Test the main page title
+        self.user = User.objects.create_user(username='Admin', password='Y62hhBkYD_@ACTH') # Create a user
 
-        # Log in the client
-        self.client.login(username='Admin', password='Y62hhBkYD_@ACTH')
+        # Log in the client user into the website
+        self.client.login(username='Admin', password='Y62hhBkYD_@ACTH') #login the user
 
-        # Set the last login time
-        self.client.cookies['last_login'] = '2024-09-20 00:00:00'
+        # Set the last login time so the user is not redirected to the login page
+        self.client.cookies['last_login'] = '2024-09-21 00:00:00' # Set the last login time
 
-        # Get the response
-        response = self.client.get("/")
-        html_response = response.content.decode("utf8")
-        self.assertIn("PBD Mental Health Tracker", html_response)
+        # Get the response from the page
+        response = self.client.get("/") # Get the client response
+        html_response = response.content.decode("utf8") # Decode the response
+        self.assertIn("PBD Mental Health Tracker", html_response) # Check if the response contains the title
