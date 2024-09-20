@@ -35,8 +35,10 @@ class MainTest(TestCase):
         # Log in the client
         self.client.login(username='Admin', password='Y62hhBkYD_@ACTH')
 
+        # Set the last login time
         self.client.cookies['last_login'] = '2024-09-20 00:00:00'
 
+        # Get the response
         response = self.client.get("/")
         html_response = response.content.decode("utf8")
         self.assertIn("PBD Mental Health Tracker", html_response)
