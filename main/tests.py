@@ -28,20 +28,15 @@ class MainTest(TestCase):
         self.assertTrue(mood.is_mood_strong)
 
     #testing the main page
-    def setUp(self):
-        # Create a test user
-        self.user = User.objects.create_user(username='Admin', password='Y62hhBkYD_@ACTH')
 
     def test_main_template_uses_correct_page_title(self):
+        self.user = User.objects.create_user(username='Admin', password='Y62hhBkYD_@ACTH')
+
         # Log in the client
         self.client.login(username='Admin', password='Y62hhBkYD_@ACTH')
 
-        self.client.cookies['last_login'] = '2024-09-20 10:00:00'
+        self.client.cookies['last_login'] = '2024-09-20 00:00:00'
 
-
-        # Now get the response
         response = self.client.get("/")
         html_response = response.content.decode("utf8")
-
-        # Check if the title is present
         self.assertIn("PBD Mental Health Tracker", html_response)
