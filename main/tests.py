@@ -1,6 +1,8 @@
 from django.test import TestCase, Client
 from django.utils import timezone
 from .models import MoodEntry
+from django.contrib.auth.models import User
+
 
 class MainTest(TestCase):
     def test_main_url_is_exist(self):
@@ -26,7 +28,20 @@ class MainTest(TestCase):
         self.assertTrue(mood.is_mood_strong)
 
     #testing the main page
-    def test_main_template_uses_correct_page_title(self): # new test
-        response = Client().get("/")                    # create an instance of the client and send a GET request to the main page
-        html_response = response.content.decode("utf8") # decode the response content to a string
-        self.assertIn("PBD Mental Health Tracker", html_response) # check if the string "PBD Mental Health Tracker" is in the response
+    def setUp(self):
+        # Create a test user
+        self.user = User.objects.create_user(username='Admin', password='Y62hhBkYD_@ACTH')
+
+    def test_main_template_uses_correct_page_title(self):
+        # Log in the client
+        self.client.login(username='Admin', password='Y62hhBkYD_@ACTH')
+
+        self.client.cookies['last_login'] = '2024-09-20 10:00:00'
+
+
+        # Now get the response
+        response = self.client.get("/")
+        html_response = response.content.decode("utf8")
+
+        # Check if the title is present
+        self.assertIn("PBD Mental Health Tracker", html_response)
