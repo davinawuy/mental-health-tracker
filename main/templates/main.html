@@ -197,12 +197,13 @@ const modal = document.getElementById('crudModal');
 
     document.getElementById("moodEntryForm").reset(); 
     document.querySelector("[data-modal-toggle='crudModal']").click();
-
     return false;
   }
 
-  document.getElementById("submitMoodEntry").onclick = addMoodEntry
-
-</script>
+  document.getElementById("moodEntryForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    addMoodEntry();
+  })
+  </script>
 
 {% endblock content %}
